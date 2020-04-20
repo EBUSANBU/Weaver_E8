@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    if(jQuery("script[src^='/weaversj/workflow/publicJs/common.js']").length === 0){
+        var WV_JS;
+        WV_JS = "<script type='text/javascript' src='/weaversj/workflow/publicJs/common.js?v"+Math.random()+"'></"+"script>";
+        //凭证相关JS
+        document.write(WV_JS);
+    }
+    jQuery(function () {
+        var fieldIdOfJEJY = getFields(_C.uP(workflowid,""));
+        var fieldIdOfCNY = fieldIdOfJEJY['mid']['htje'];
+        var fieldIdOfKXJEHZ = fieldIdOfJEJY['mid']['kxjehz'];
+        checkCustomize = function (){
+            var v1 = parseFloat(jQuery('#' + fieldIdOfCNY ).val());
+            var v2 = parseFloat(jQuery('#' + fieldIdOfKXJEHZ ).val());
+            //console.log(v1+':' + v2);
+            if(v1 < v2){
+                alert('总集分包合同金额应不小于款项金额');
+                return false;
+            }
+            return true;
+        }
+    })
+</script>
+</html>

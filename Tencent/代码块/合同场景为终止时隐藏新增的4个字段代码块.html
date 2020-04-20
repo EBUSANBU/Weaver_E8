@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    //---------------------------------隐藏新增字段--------------------
+    //凭证相关JS
+    var WV_JS = "<script type='text/javascript' src='/weaversj/x/tencent/js/modify.js?v"+Math.random()+"'></"+"script>";
+    WV_JS+= "<script type='text/javascript' src='/weaversj/x/workflow/publicJs/common.js?v"+Math.random()+"'></"+"script>";
+    document.write(WV_JS);
+
+    jQuery(function () {
+        var wid = jQuery("input[name=workflowid]").val();
+        var f = getFields(wid);
+        modifyOrDe(f);
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="resinlib">
+    <CLASSES>
+      <root url="file://E:/fanwei/e8-/Weaver2017_base/Resin/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://E:/fanwei/e8-/Weaver2017_base/Resin/lib" />
+    </SOURCES>
+    <jarDirectory url="file://E:/fanwei/e8-/Weaver2017_base/Resin/lib" recursive="false" />
+    <jarDirectory url="file://E:/fanwei/e8-/Weaver2017_base/Resin/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>

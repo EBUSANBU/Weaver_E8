@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <title>Title</title>
+
+
+</head>
+<body>
+
+</body>
+
+
+<script>
+    var WV_JS= "<script type='text/javascript' src='/weaversj/x/workflow/publicJs/common.js?v"+Math.random()+"'></"+"script>";
+    WV_JS += "<script type='text/javascript' src='/weaversj/x/yt/js/gotoWorkflow.js?v"+Math.random()+"'></"+"script>";
+    document.write(WV_JS);
+    jQuery(function () {
+        if (_C.uP("need") == '1') {
+            var wid = jQuery("input[name=workflowid]").val();
+            var f = getFields(wid);
+            setDtList(f);
+        }
+    })
+</script>
+</html>

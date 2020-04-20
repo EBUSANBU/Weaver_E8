@@ -1,0 +1,81 @@
+#hisDiv{
+	overflow:auto;
+	width:100%;
+}
+
+#table1{
+    width: 220px;
+	border-right:1px solid #f00;border-bottom:1px solid #f00;
+	border-collapse:collapse;border-spacing:0;
+
+}
+#table1 td{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp:1;
+	-webkit-box-orient: vertical;
+	border-left:1px solid #f00;border-top:1px solid #f00
+}
+
+#table1 tr:nth-child(even)
+{
+    background: #ccc;
+}
+#table1 tr:nth-child(odd)
+{
+    background: #fff;
+}
+
+
+#table2 {border-right:1px solid #f00;border-bottom:1px solid #f00} 
+#table2 td{border-left:1px solid #f00;border-top:1px solid #f00} 
+#table2 th{border-left:1px solid #f00;border-top:1px solid #f00}
+
+
+#table2 tbody {
+}
+
+#selecttable{
+	overflow:auto;
+	width:100%;
+	height:600px;
+	display:block;
+    -webkit-overflow-scrolling: touch; // 为了滚动顺畅 
+}
+#table2 tbody tr:nth-child(odd)
+{
+    background: #fff;
+}
+
+#scll{
+	background: #f00;
+	color:#fff;
+}
+#divcount{
+	color : #f00;
+}
+#table2 tbody tr:nth-child(even)
+{
+    background: #ccc;
+}
+#showDiv{
+	width:150px;
+	height:30px;
+	font-family:微软雅黑;
+	position: absolute;
+	border:2px solid #a1a1a1;<!-- 边框样式-->
+	z-index: 99; 
+	padding:5px;
+	background-color: #fffafa; 
+	display:none;
+	margin:0 auto;
+	text-align:center;
+}
+
+#updatetable span{
+	color : red;
+}
+#message span{
+	color : #0000ff;
+}

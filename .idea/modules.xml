@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PublicUtil/PublicUtil.iml" filepath="$PROJECT_DIR$/PublicUtil/PublicUtil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SMoore/SMoore.iml" filepath="$PROJECT_DIR$/SMoore/SMoore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQLRunner/SQLRunner.iml" filepath="$PROJECT_DIR$/SQLRunner/SQLRunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tencent/Tencent.iml" filepath="$PROJECT_DIR$/Tencent/Tencent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Weaver_E8.iml" filepath="$PROJECT_DIR$/.idea/Weaver_E8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YuTong/YuTong.iml" filepath="$PROJECT_DIR$/YuTong/YuTong.iml" />
+    </modules>
+  </component>
+</project>
