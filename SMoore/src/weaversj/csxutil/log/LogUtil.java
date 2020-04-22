@@ -54,7 +54,7 @@ public class LogUtil {
         logger.addHandler(handler);
     }
 
-/*    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         // TODO Auto-generated method stub
         LogUtil log = LogUtil.getLogger(LogUtil.class.getName());
         log.info("ceshi");

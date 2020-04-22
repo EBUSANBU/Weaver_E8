@@ -7,11 +7,11 @@ function modifyOrDe(f) {
     var fieldIdOfCDSYSM = f["cdsxsm"];              //冲抵事项说明字段fieldid
     var fieldName = 'isShow';             //行name
 
-    console.log("合同场景:" + jQuery('#' + fieldIdOfSelect).val());
-    console.log("未结款项字段fieldid:" + fieldIdOfWJKX);
-    console.log("终止原因说明字段fieldid:" + fieldIdOfZZYYSM);
-    console.log("冲抵核销事项字段fieldid:" + fieldIdOfCDHX);
-    console.log("冲抵事项说明字段fieldid:" + fieldIdOfCDSYSM);
+    //console.log("合同场景:" + jQuery('#' + fieldIdOfSelect).val());
+    //console.log("未结款项字段fieldid:" + fieldIdOfWJKX);
+    //console.log("终止原因说明字段fieldid:" + fieldIdOfZZYYSM);
+    //console.log("冲抵核销事项字段fieldid:" + fieldIdOfCDHX);
+    //console.log("冲抵事项说明字段fieldid:" + fieldIdOfCDSYSM);
 
     if (jQuery('#' + fieldIdOfSelect).val() == selectValue) {
         //添加验证 必填

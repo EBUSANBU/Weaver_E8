@@ -12,147 +12,42 @@
     WV_JS += "<script type='text/javascript' src='/weaversj/x/tencent/js/autoVal.js?v"+Math.random()+"'></"+"script>";
     document.write(WV_JS);
     var workflowid = _C.uP("workflowid", '');
+    //console.log("----------p");
     var detail = 3;  //第几个明细表，从1开始
     var hth = 'xshth'; //合同号数据库字段名 ，主表哦
     jQuery(function () {
-        var ff = getFields(workflowid);
-        HiddenListener(ff['mid'][hth], function (oldValue, newValue) {
-            var mainId = jQuery('#' + ff['mid'][hth]).val();
-            autoval(ff, mainId, detail);
+        var fff = getFields(workflowid);
+       // console.log(fff);
+        HiddenListener(fff['mid'][hth], function (oldValue, newValue) {
+            var mainId = jQuery('#' + fff['mid'][hth]).val();
+            autoval(fff, mainId, detail);
         });
+        setInterval(function () {
+           // console.log(fff);
+            var htjeCNY = jQuery("#"+fff['mid']['htjeCNY']).val();
+            var di = detail;
+            //console.log("di----"+di);
+            // console.log(fff);
+            console.log("jt_kxxz====="+fff['did'+di]['jt_kxxz'] + "_']");
+            jQuery("select[id^='" + fff['did'+di]['jt_kxxz'] + "_']").each(function (key, value) {
+                var dt_index = jQuery(this).attr("id").split("_")[1];//截取明细下标
+                var jt_kxxz = jQuery('#' + fff['did'+di]['jt_kxxz'] + "_" + dt_index).val();
+                var jt_kxje = jQuery('#' + fff['did'+di]['jt_kxje'] + "_" + dt_index).val();
+                //console.log("jt_kxxz-------"+jt_kxxz);
+                //console.log("jt_kxje-------"+jt_kxje);
+                //console.log("htjeCNY-------"+htjeCNY);
+
+                if (jt_kxxz == 5) { //预付款比例
+                    _C.v(fff['did'+di]['ykfbl'] + "_" + dt_index, toFloat(jt_kxje) / toFloat(htjeCNY))
+                }
+            });
+        },1300);
     });
 
 </script>
 
+<script src='/weaversj/x/tencent/js/autoVal.js'></script>
 
-<!--//*******************旧的写法-废弃-->
-<script>
-    var WV_JS = "<script type='text/javascript' src='/weaversj/x/workflow/publicJs/common.js?v" + Math.random() + "'></" + "script>";
-    WV_JS += "<script type='text/javascript' src='/weaversj/x/workflow/publicJs/myCommon.js?v" + Math.random() + "'></" + "script>";
-    WV_JS += "<script type='text/javascript' src='/weaversj/x/tencent/js/autoVal.js?v" + Math.random() + "'></" + "script>";
-    document.write(WV_JS);
-    var workflowid = _C.uP("workflowid", '');
-    var detail = 3;  //第几个明细表，从1开始
-    var hth = 'xshth'; //合同号数据库字段名 ，主表哦
-    jQuery(function () {
-        var ff = getFields(workflowid);
-        HiddenListener(ff['mid'][hth], function (oldValue, newValue) {
-            var mainId = jQuery('#' + ff['mid'][hth]).val();
-            autoval(ff, mainId, detail);
-        });
-    });
-
-    //根据销售合同台账的明细表8带出财务信息。
-    function autoval(field, mainId, detail) {
-        jQuery.ajax({
-            url: "/weaversj/x/tencent/jsp/GetUf_HTTZB_dt8Val.jsp?mainId=" + mainId,
-            type: "get",
-            async: "false",
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-                relodDetail(data, field, detail)
-            }
-        })
-    }
-
-    //更新财务信息明细表 data 建模数据 field id数组，detail 明细表下表
-    function relodDetail(data, field, detail) {
-        var dtFieldID = field["did" + detail];
-        console.log(dtFieldID);
-        var detailIndex = detail - 1;
-        _C.deleteRow(detailIndex);
-        for (var i = 0; i < data.length; i++) {
-            try {
-                //执行增加行方法
-                //eval('addRow' + detailIndex + '(' + detailIndex + ');');
-                //_C.addRow(detailIndex);
-                jQuery("button[name='addbutton" + detailIndex + "']").click();
-                //setButtonToJs();
-            } catch (e) {
-                if (!!window.console && 'function' == typeof window.console.log)
-                    window.console.log('ADD ROW FAIL > ' + e);
-
-            }
-        }
-        ;
-        //填充行信息
-        setTimeout(function () {
-            var index = 0;
-            jQuery("select[id^='" + dtFieldID['jt_kxxz'] + "_']").each(function (key, value) {
-                var dt_index = jQuery(this).attr("id").split("_")[1];//截取明细下标
-                setFieldValue_browser(dtFieldID['jt_wfztmc'] + "_" + dt_index, data[index]['jt_wfztmcs'], data[index]['wofzt']);//我方主体名称 浏览按钮
-                _C.vt(dtFieldID['jt_wfztbm'] + "_" + dt_index, data[index]['jt_wfztbm'], data[index]['jt_wfztbm']);//我方主体编码 文本框
-                jQuery("#" + dtFieldID['jt_wfskxw'] + "_" + dt_index).val(data[index]['jt_wfskxw']); //我方收付款行为 下拉选择框
-                _C.vt(dtFieldID['jt_tfztmc'] + "_" + dt_index, data[index]['jt_tfztmc'], data[index]['jt_tfztmc']);//他方主体名称  文本框
-                _C.vt(dtFieldID['jt_tfztbm'] + "_" + dt_index, data[index]['jt_tfztbm'], data[index]['jt_tfztbm']);//他方主体编码  文本框
-                _C.vt(dtFieldID['jt_tfztyhzhbm'] + "_" + dt_index, data[index]['jt_tfztyhzhbm'], data[index]['jt_tfztyhzhbm']);//他方主体银行账号编码  文本框
-
-
-                jQuery("#" + dtFieldID['jt_kxjsfs'] + "_" + dt_index).val(data[index]['jt_kxjsfs']);//款项结算方式 下拉选择框
-                jQuery("#" + dtFieldID['jt_kxjehllx'] + "_" + dt_index).val(data[index]['jt_kxjehllx']);//款项金额汇率类型 下拉选择框
-                _C.vt(dtFieldID['jt_kxjebzmc'] + "_" + dt_index, data[index]['jt_kxjebzmc'], data[index]['biz']);//款项金额币种名称 浏览按钮
-                //_C.vs(dtFieldID['jt_kxjebzbm']+"_"+dt_index,data[index]['jt_kxjebzbm'],data[index]['jt_kxjebzbm']);//款项金额币种编码 文本框
-                //_C.vs(dtFieldID['jt_kxjehl']+"_"+dt_index,data[index]['jt_kxjehl'],data[index]['jt_kxjehl']);//款项金额汇率 文本框
-                _C.vt(dtFieldID['jt_kxje'] + "_" + dt_index, data[index]['jt_kxje'], '');//款项金额 文本框
-
-                jQuery("#" + dtFieldID['jt_kxfplx'] + "_" + dt_index).val(data[index]['jt_kxfplx']);//款项发票类型 选择框
-
-                index++;
-            });
-        }, 1000);
-
-        setTimeout(function () {
-            var index = 0;
-            jQuery("select[id^='" + dtFieldID['jt_kxxz'] + "_']").each(function (key, value) {
-                var dt_index = jQuery(this).attr("id").split("_")[1];//截取明细下标
-                jQuery("#" + dtFieldID['jt_kxxz'] + "_" + dt_index).val(data[index]['jt_kxxz']);//款项性质 下拉选择框
-                //jQuery("#"+dtFieldID['jt_kxxz']+"_"+dt_index).change();
-                jQuery("#" + dtFieldID['jt_kxxz'] + "_" + dt_index + "span").html("");//款项性质 下拉选择框
-                index++;
-            });
-        }, 3000);
-        setTimeout(function () {
-            var index = 0;
-            jQuery("select[id^='" + dtFieldID['jt_kxxz'] + "_']").each(function (key, value) {
-                var dt_index = jQuery(this).attr("id").split("_")[1];//截取明细下标
-                jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index).html("<option></option><option value='5'>验收完成且收到发票后</option><option value='8'>合同签订后</option><option value='9'>指定最晚付款日</option>");
-                jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index).val(data[index]['jt_kxxyqqskj']);//款项信用期起算口径 选择框 被联动
-                jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index + "span").html("");//款项信用期起算口径 选择框
-                index++;
-            });
-        }, 4000);
-        setTimeout(function () {
-            var index = 0;
-            jQuery("select[id^='" + dtFieldID['jt_kxxz'] + "_']").each(function (key, value) {
-                var dt_index = jQuery(this).attr("id").split("_")[1];//截取明细下标
-                jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index).html("<option></option><option value='4'>先付款后开票</option><option value='5'>先开票后付款</option><option value='6'>无发票(付款)</option>");
-                jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index).val(data[index]['jt_kpyd']);//开票约定  选择框 被联动
-                jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index + "span").html("");//开票约定  选择框
-                index++;
-            });
-        }, 5000);
-    }
-
-    function load1(dtFieldID, data, dt_index) {
-        console.log("dt_index:" + dt_index);
-        jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index).html("<option></option><option value='5'>验收完成且收到发票后</option><option value='8'>合同签订后</option><option value='9'>指定最晚付款日</option>");
-        jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index).val(data[index]['jt_kxxyqqskj']);//款项信用期起算口径 选择框 被联动
-        jQuery("#" + dtFieldID['jt_kxxyqqskj'] + "_" + dt_index + "span").html("");//款项信用期起算口径 选择框
-    }
-
-    function load2(dtFieldID, data, dt_index) {
-        console.log("dt_index:" + dt_index);
-        jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index).html("<option></option><option value='4'>先付款后开票</option><option value='5'>先开票后付款</option><option value='6'>无发票(付款)</option>");
-        jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index).val(data[index]['jt_kpyd']);//开票约定  选择框 被联动
-        jQuery("#" + dtFieldID['jt_kpyd'] + "_" + dt_index + "span").html("");//开票约定  选择框
-    }
-
-    /*
-    jQuery("#"+dtFieldID['jt_kxxyqqskj']+"_"+dt_index).val(data[index]['jt_kxxyqqskj']);//款项信用期起算口径 选择框 被联动
-    jQuery("#"+dtFieldID['jt_kxxyqqskj']+"_"+dt_index).change();//款项信用期起算口径 选择框 被联动
-    jQuery("#"+dtFieldID['jt_kxxyqqskj']+"_"+dt_index+"span").html("");//款项信用期起算口径 选择框*/
-</script>
 
 </body>
 </html>
