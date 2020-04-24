@@ -4,11 +4,12 @@
 <%@ page import="weaver.general.BaseBean" %>
 <%@ page import="com.alibaba.fastjson.JSONObject" %>
 <%@ page import="com.alibaba.fastjson.JSONArray" %>
+<%@ page import="weaversj.csxutil.log.LogUtil" %>
 <%
     RecordSet rs = new RecordSet();
     String formid = Util.null2String(request.getParameter("formid"));
     String sql;
-
+    LogUtil log = LogUtil.getLogger("getMoney.jsp");
     // sql = "select tablename from workflow_bill where id="+formid;
     //rs.execute(sql);
     //String tablename = rs.getString("tablename"); //用不上
@@ -68,7 +69,7 @@
             jsonObject.put("code", "0");
         }
     }
-    //new BaseBean().writeLog("----------jsonObject---------"+jsonObject.toJSONString());
+    log.info("----------jsonObject---------"+jsonObject.toJSONString());
 
     out.write(jsonObject.toJSONString());
     out.flush();

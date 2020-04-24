@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="ss"></div>
+</body>
+<script>
+    jQuery(function () {
+        jQuery.ajax({
+            url: "/weaversj/x/tencent/jsp/GetUf_HTTZB_dt8Val.jsp?mainId=" + mainId,
+            type: "get",
+            // async: "false",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                jQuery("#ss").html(data);
+            }
+        })
+    })
+</script>
+</html>
+<script src='/weaversj/x/tencent/js/autoVal.js?v" + Math.random() + "'></script>

@@ -1,4 +1,3 @@
-
 //根据销售合同台账的明细表8带出财务信息。
 function autoval(field, mainId, detail) {
     jQuery.ajax({
@@ -76,7 +75,7 @@ function relodDetail(dataToMode, field, detail) {
                 index++;
 
             });
-
+            console.log("deleteIndex--------"+deleteIndex);
             setTimeout(function () {
                 _C.deleteRow(detailIndex, "_" + parseInt(deleteIndex));
 
@@ -85,4 +84,3 @@ function relodDetail(dataToMode, field, detail) {
         }, 1000);
     }
 }
-

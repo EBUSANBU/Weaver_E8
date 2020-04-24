@@ -16,6 +16,54 @@
         document.write(WV_JS);
     }
     jQuery(function () {
+        var fieldIdOfJEJY = getFields(_C.uP("workflowid",""));
+        var fieldIdOfCNY = fieldIdOfJEJY['mid']['htjeCNY'];
+        var fieldIdOfKXJEHZ = fieldIdOfJEJY['mid']['kxjehz'];
+        checkCustomize = function (){
+            var v1 = parseFloat(jQuery('#' + fieldIdOfCNY ).val());
+            var v2 = parseFloat(jQuery('#' + fieldIdOfKXJEHZ ).val());
+            console.log(v1+':' + v2);
+            if(v1 < v2){
+                alert('总集分包合同金额应不小于款项金额');
+                return false;
+            }
+            return true;
+        }
+    })
+</script>
+</html>
+
+
+<!-- script代码，如果需要引用js文件，请使用与HTML中相同的方式。 -->
+<script>
+
+    var bzSqlField_z = "bz";//主表币种数据库字段
+
+    var bzhlSqlfield_m = "jt_kxjehl";	//明细表汇率数据库字段
+    var bzmcSqlfield_m = "jt_kxjebzmc";	//明细表币种名称数据库字段
+    var bzbmSqlfield_m = "jt_kxjebzbm"; //明显表币种编码数据库字段
+    var detailNo = "3";  //明细表编号，即第几个明细表
+
+
+
+    var WV_JS =  "<script type='text/javascript' src='/weaversj/tencent/workflow/zj/js/zj_bChange.js?v"+Math.random()+"'></"+"script>";
+    if(jQuery("script[src^='/weaversj/workflow/publicJs/common.js']").length === 0){
+        WV_JS += "<script type='text/javascript' src='/weaversj/workflow/publicJs/common.js?v"+Math.random()+"'></"+"script>";
+    }
+
+    //凭证相关JS
+    document.write(WV_JS);
+
+</script>
+
+<script>
+    if(jQuery("script[src^='/weaversj/workflow/publicJs/common.js']").length === 0){
+        var WV_JS;
+        WV_JS = "<script type='text/javascript' src='/weaversj/workflow/publicJs/common.js?v"+Math.random()+"'></"+"script>";
+        //凭证相关JS
+        document.write(WV_JS);
+    }
+    jQuery(function () {
         var fieldIdOfJEJY = getFields(_C.uP(workflowid,""));
         var fieldIdOfCNY = fieldIdOfJEJY['mid']['htje'];
         var fieldIdOfKXJEHZ = fieldIdOfJEJY['mid']['kxjehz'];
@@ -31,4 +79,3 @@
         }
     })
 </script>
-</html>
